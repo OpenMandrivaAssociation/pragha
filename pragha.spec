@@ -12,7 +12,7 @@ BuildRequires:	dbus-glib-devel
 BuildRequires:	gtk2-devel
 BuildRequires:	libflac-devel
 BuildRequires:	keybinder-devel
-BuildRequires:	libgstreamer-devel
+BuildRequires:	gstreamer0.10-devel
 BuildRequires:	libgstreamer-plugins-base0.10-devel
 BuildRequires:	libcddb-devel
 BuildRequires:	libcdio-devel
