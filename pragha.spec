@@ -1,7 +1,7 @@
 Summary:	Lightweight GTK+ music manager
 Name:		pragha
-Version:	1.0.1
-Release:	%mkrel 1
+Version:	1.1.0
+Release:	1
 Group:		Sound
 License:	GPLv3+
 URL:		http://pragha.wikispaces.com/
@@ -33,7 +33,7 @@ author.
 
 %prep
 %setup -q
-%patch0 -p1 -b -O3
+#%patch0 -p1 -b -O3
 
 
 %build
@@ -55,5 +55,5 @@ rm -rf %{buildroot}%{_datadir}/%{name}/doc
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*x*/apps/%{name}.png
 %{_datadir}/pixmaps/%{name}/
-%{_datadir}/%{name}/
+#%{_datadir}/%{name}/
 %{_mandir}/man1/pragha.1.*
