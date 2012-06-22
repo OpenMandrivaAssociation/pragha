@@ -1,6 +1,6 @@
 Summary:	Lightweight GTK+ music manager
 Name:		pragha
-Version:	1.1.0
+Version:	1.1.0.1
 Release:	1
 Group:		Sound
 License:	GPLv3+
