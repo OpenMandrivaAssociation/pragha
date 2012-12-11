@@ -7,20 +7,20 @@ License:	GPLv3+
 URL:		http://pragha.wikispaces.com/
 Source0:	https://github.com/downloads/matiasdelellis/pragha/%{name}-%{version}.tar.bz2	
 Patch0:		pragha-0.97.0-cflags-O3.patch
-BuildRequires:	libalsa-devel
-BuildRequires:	dbus-glib-devel
+BuildRequires:	alsa-oss-devel
+BuildRequires:	pkgconfig(dbus-glib-1)
 BuildRequires:	gtk2-devel
-BuildRequires:	libflac-devel
-BuildRequires:	keybinder-devel
-BuildRequires:	gstreamer0.10-devel
+BuildRequires:	pkgconfig(flac)
+BuildRequires:	pkgconfig(keybinder)
+BuildRequires:	pkgconfig(gstreamer-0.10)
 BuildRequires:	pkgconfig(gstreamer-app-0.10)
-BuildRequires:	libcddb-devel
-BuildRequires:	libcdio-devel
-BuildRequires:	libcurl-devel
+BuildRequires:	pkgconfig(libcddb)
+BuildRequires:	pkgconfig(libcdio)
+BuildRequires:	pkgconfig(libcurl)
 #BuildRequires:  liblastfm-devel >= 0.4
-BuildRequires:	libnotify-devel
-BuildRequires:	sqlite-devel
-BuildRequires:	taglib-devel
+BuildRequires:	pkgconfig(libnotify)
+BuildRequires:	pkgconfig(sqlite)
+BuildRequires:	pkgconfig(taglib)
 BuildRequires:	desktop-file-utils
 Requires:       gstreamer0.10-plugins-base
 
@@ -39,7 +39,6 @@ author.
 %build
 %configure2_5x
 %make
-
 
 %install
 %makeinstall_std
