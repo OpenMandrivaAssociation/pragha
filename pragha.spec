@@ -1,28 +1,30 @@
 Summary:	Lightweight GTK+ music manager
 Name:		pragha
-Version:	1.1.1
-Release:	2
+Version:	1.3.99.1
+Release:	1
 Group:		Sound
 License:	GPLv3+
-URL:		http://pragha.wikispaces.com/
-Source0:	https://github.com/downloads/matiasdelellis/pragha/%{name}-%{version}.tar.bz2	
-Patch0:		pragha-0.97.0-cflags-O3.patch
+URL:		https://github.com/pragha-music-player/pragha
+Source0:	https://github.com/pragha-music-player/pragha/archive/refs/tags/v%{version}.tar.gz
+Patch0:		pragha-fix-makefile.patch
 BuildRequires:	alsa-oss-devel
 BuildRequires:	pkgconfig(dbus-glib-1)
-BuildRequires:	gtk2-devel
+BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(flac)
-BuildRequires:	pkgconfig(keybinder)
-BuildRequires:	pkgconfig(gstreamer-0.10)
-BuildRequires:	pkgconfig(gstreamer-app-0.10)
+BuildRequires:	pkgconfig(gstreamer-1.0)
+BuildRequires:	pkgconfig(gstreamer-base-1.0)
+BuildRequires:	pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires:	pkgconfig(libcddb)
 BuildRequires:	pkgconfig(libcdio)
 BuildRequires:	pkgconfig(libcurl)
 #BuildRequires:  liblastfm-devel >= 0.4
 BuildRequires:	pkgconfig(libnotify)
-BuildRequires:	pkgconfig(sqlite)
+BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	pkgconfig(taglib)
+BuildRequires:	pkgconfig(libpeas-1.0)
+BuildRequires:	pkgconfig(libpeas-gtk-1.0)
 BuildRequires:	desktop-file-utils
-Requires:       gstreamer0.10-plugins-base
+BuildRequires:	xfce4-dev-tools
 
 %description
 Pragha is is a lightweight GTK+ music manager that aims to be fast, bloat-free,
@@ -32,27 +34,32 @@ Pragha is a fork of Consonance Music Manager, discontinued by the original
 author.
 
 %prep
-%setup -q
-#%patch0 -p1 -b -O3
-
+%autosetup -p1
+./autogen.sh
+%configure
 
 %build
-%configure2_5x
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %find_lang %{name}
 # remove duplicate docs
 rm -rf %{buildroot}%{_datadir}/%{name}/doc
 
+# Nothing uses the -devel files, so no point in shipping them
+rm -rf %{buildroot}%{_includedir} %{buildroot}%{_libdir}/*.so %{buildroot}%{_libdir}/pkgconfig
+
 %files -f %{name}.lang
 # FIXME add AUTHORS and README if not empty
-%doc ChangeLog FAQ NEWS
+%doc ChangeLog FAQ NEWS README
 %{_bindir}/pragha
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/*x*/apps/%{name}.png
+%{_datadir}/icons/hicolor/*/apps/%{name}*
 %{_datadir}/pixmaps/%{name}/
 #%{_datadir}/%{name}/
-%{_mandir}/man1/pragha.1.*
+%{_mandir}/man1/pragha.1*
+%{_libdir}/pragha
+%{_datadir}/metainfo/io.github.pragha_music_player.metainfo.xml
+%{_datadir}/pragha

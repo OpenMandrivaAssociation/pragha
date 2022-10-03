@@ -1,0 +1,13 @@
+diff -up pragha-1.3.99.1/Makefile.am.omv~ pragha-1.3.99.1/Makefile.am
+--- pragha-1.3.99.1/Makefile.am.omv~	2022-10-03 15:03:03.945459828 +0200
++++ pragha-1.3.99.1/Makefile.am	2022-10-03 15:03:03.980460007 +0200
+@@ -3,9 +3,7 @@ SUBDIRS = \
+ 	po    \
+ 	src
+ 
+-if HAVE_LIBPEAS
+ SUBDIRS += plugins
+-endif
+ 
+ AUTOMAKE_OPTIONS = \
+ 	1.8            \
